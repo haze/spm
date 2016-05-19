@@ -1,0 +1,34 @@
+defn read-input (term:Char) -> String :
+    var char = get-char(STANDARD-INPUT-STREAM) as Char
+    var buff = StringBuffer()
+    add(buff, char)
+    while ((char != term) when char is Char else false) :
+        if char is Char :
+            char = get-char(STANDARD-INPUT-STREAM) as Char
+            add(buff, char)
+        else : 
+            break
+    to-string(buff)
+
+defn escape (str:String) -> String : 
+    string-join(filter({_ != '\n'}, to-array<Char>(str)))
+
+defn read-input () -> String :
+    read-input('\n')
+
+defn make-folder (name:String) :
+    println("Creating folder %_..." % [name])
+    call-system(to-string("mkdir %_" % [name]))
+
+defn make-file (name:String) :
+    println("Creating %_..." % [name])
+    call-system(to-string("touch %_" % [name]))
+
+defn main () :
+    print("Enter Project name: ")
+    val name = escape(read-input())
+    make-folder(name)
+    make-folder(to-string("%_/src" % [name]))
+    make-file(to-string("%_/src/_main.stanza" % [name]))
+    println("Done!")
+main()
