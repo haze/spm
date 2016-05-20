@@ -1,6 +1,6 @@
 
 # SPM
-Stanza - Project - Mak
+Stanza - Project - Make
 
 Extremely simple tool to create stanza projects. 
 
