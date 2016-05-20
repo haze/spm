@@ -1,13 +1,9 @@
 defn read-input (term:Char) -> String :
     var char = get-char(STANDARD-INPUT-STREAM) as Char
     var buff = StringBuffer()
-    add(buff, char)
-    while ((char != term) when char is Char else false) :
-        if char is Char :
-            char = get-char(STANDARD-INPUT-STREAM) as Char
-            add(buff, char)
-        else : 
-            break
+    while char is Char and char !=  term :
+        add(buff, char as Char)
+        char = get-char(STANDARD-INPUT-STREAM)
     to-string(buff)
 
 defn escape (str:String) -> String : 
